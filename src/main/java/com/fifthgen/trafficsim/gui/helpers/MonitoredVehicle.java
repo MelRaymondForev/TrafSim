@@ -1,185 +1,108 @@
-/*
- * VANETsim open source project - http://www.vanet-simulator.org
- * Copyright (C) 2008 - 2013  Andreas Tomandl, Florian Scheuer, Bernhard Gruber
- * 
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
- * 
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU General Public License for more details.
- * 
- * You should have received a copy of the GNU General Public License
- * along with this program.  If not, see <http://www.gnu.org/licenses/>.
- */
 package com.fifthgen.trafficsim.gui.helpers;
-
 
 import com.fifthgen.trafficsim.scenario.Vehicle;
 
 public class MonitoredVehicle {
-	/** The vehicle associated. */
-	private final Vehicle vehicle_;
-	
-	private int lastUpdate_;
-	private long ID;
-	private int[] lane;
-	private int[] distance;
-	private double[] speed;
-	private int actualIndex = 0;
-	
-	/** Link to the previous object. */
-	protected MonitoredVehicle previous_;
-	
-	/** Link to the next object. */
-	protected MonitoredVehicle next_;
-	
-	public MonitoredVehicle(Vehicle vehicle, int theLane, int x1, int x2, int y1, int y2, double theSpeed, long theID){
-		vehicle_ = vehicle;
-		ID = theID;
-		lane[actualIndex] = theLane;
-		distance[actualIndex] = (int) Math.sqrt(x1*x2 + y1*y2);
-		speed[actualIndex] = theSpeed;
-		actualIndex++;
-		actualIndex = actualIndex%3;
-	}
-	
-	public void updateVehicle(int theLane, int x1, int x2, int y1, int y2, double theSpeed){
-		lane[actualIndex] = theLane;
-		distance[actualIndex] = (int) Math.sqrt(x1*x2 + y1*y2);
-		speed[actualIndex] = theSpeed;
-		actualIndex++;
-		actualIndex = actualIndex%3;
-	}
 
-	/**
-	 * Updates the last modification time.
-	 * 
-	 * @param time	the current time
-	 */
-	public void setLastUpdate(int time){
-		lastUpdate_ = time;
-	}
-	
-	/**
-	 * @return the iD
-	 */
-	public long getID() {
-		return ID;
-	}
+    private final Vehicle vehicle_;
 
-	/**
-	 * @param iD the iD to set
-	 */
-	public void setID(long iD) {
-		ID = iD;
-	}
+    protected MonitoredVehicle previous_;
 
-	/**
-	 * @return the lane
-	 */
-	public int[] getLane() {
-		return lane;
-	}
+    protected MonitoredVehicle next_;
+    private int lastUpdate_;
+    private long ID;
+    private int[] lane;
+    private int[] distance;
+    private double[] speed;
+    private int actualIndex = 0;
 
-	/**
-	 * @param lane the lane to set
-	 */
-	public void setLane(int[] lane) {
-		this.lane = lane;
-	}
+    public MonitoredVehicle(Vehicle vehicle, int theLane, int x1, int x2, int y1, int y2, double theSpeed, long theID) {
+        vehicle_ = vehicle;
+        ID = theID;
+        lane[actualIndex] = theLane;
+        distance[actualIndex] = (int) Math.sqrt(x1 * x2 + y1 * y2);
+        speed[actualIndex] = theSpeed;
+        actualIndex++;
+        actualIndex = actualIndex % 3;
+    }
 
-	/**
-	 * @return the distance
-	 */
-	public int[] getDistance() {
-		return distance;
-	}
+    public void updateVehicle(int theLane, int x1, int x2, int y1, int y2, double theSpeed) {
+        lane[actualIndex] = theLane;
+        distance[actualIndex] = (int) Math.sqrt(x1 * x2 + y1 * y2);
+        speed[actualIndex] = theSpeed;
+        actualIndex++;
+        actualIndex = actualIndex % 3;
+    }
 
-	/**
-	 * @param distance the distance to set
-	 */
-	public void setDistance(int[] distance) {
-		this.distance = distance;
-	}
+    public void setLastUpdate(int time) {
+        lastUpdate_ = time;
+    }
 
-	/**
-	 * @return the speed
-	 */
-	public double[] getSpeed() {
-		return speed;
-	}
+    public long getID() {
+        return ID;
+    }
 
-	/**
-	 * @param speed the speed to set
-	 */
-	public void setSpeed(double[] speed) {
-		this.speed = speed;
-	}
+    public void setID(long iD) {
+        ID = iD;
+    }
 
-	/**
-	 * @return the actualIndex
-	 */
-	public int getActualIndex() {
-		return actualIndex;
-	}
+    public int[] getLane() {
+        return lane;
+    }
 
-	/**
-	 * @param actualIndex the actualIndex to set
-	 */
-	public void setActualIndex(int actualIndex) {
-		this.actualIndex = actualIndex;
-	}
+    public void setLane(int[] lane) {
+        this.lane = lane;
+    }
 
-	/**
-	 * @return the lastUpdate_
-	 */
-	public int getLastUpdate_() {
-		return lastUpdate_;
-	}
+    public int[] getDistance() {
+        return distance;
+    }
 
-	/**
-	 * @param lastUpdate_ the lastUpdate_ to set
-	 */
-	public void setLastUpdate_(int lastUpdate_) {
-		this.lastUpdate_ = lastUpdate_;
-	}
+    public void setDistance(int[] distance) {
+        this.distance = distance;
+    }
 
-	/**
-	 * @return the next_
-	 */
-	public MonitoredVehicle getNext_() {
-		return next_;
-	}
+    public double[] getSpeed() {
+        return speed;
+    }
 
-	/**
-	 * @param next_ the next_ to set
-	 */
-	public void setNext_(MonitoredVehicle next_) {
-		this.next_ = next_;
-	}
+    public void setSpeed(double[] speed) {
+        this.speed = speed;
+    }
 
-	/**
-	 * @return the previous_
-	 */
-	public MonitoredVehicle getPrevious_() {
-		return previous_;
-	}
+    public int getActualIndex() {
+        return actualIndex;
+    }
 
-	/**
-	 * @param previous_ the previous_ to set
-	 */
-	public void setPrevious_(MonitoredVehicle previous_) {
-		this.previous_ = previous_;
-	}
+    public void setActualIndex(int actualIndex) {
+        this.actualIndex = actualIndex;
+    }
 
-	/**
-	 * @return the vehicle_
-	 */
-	public Vehicle getVehicle_() {
-		return vehicle_;
-	}
+    public int getLastUpdate_() {
+        return lastUpdate_;
+    }
+
+    public void setLastUpdate_(int lastUpdate_) {
+        this.lastUpdate_ = lastUpdate_;
+    }
+
+    public MonitoredVehicle getNext_() {
+        return next_;
+    }
+
+    public void setNext_(MonitoredVehicle next_) {
+        this.next_ = next_;
+    }
+
+    public MonitoredVehicle getPrevious_() {
+        return previous_;
+    }
+
+    public void setPrevious_(MonitoredVehicle previous_) {
+        this.previous_ = previous_;
+    }
+
+    public Vehicle getVehicle_() {
+        return vehicle_;
+    }
 }
